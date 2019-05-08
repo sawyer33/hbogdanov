@@ -5,7 +5,7 @@ int main()
     int N;
     printf("N=");
 	scanf("%d",&N);
-   if (N > 10000 || N < 3  )
+   if (N > 10000 || N < 2  )
     {
     	printf("N has to be between 2 and 10000\n");
      return 0;	
