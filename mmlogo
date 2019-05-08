@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+int main()
+{
+    int N;
+    printf("N=");
+	scanf("%d",&N);
+   if (N > 10000 || N < 3  )
+    {
+    	printf("N has to be between 2 and 10000\n");
+     return 0;	
+    }
+   if (N %2== 0)
+   {
+   	printf("N has to be odd number\n");
+   	return 0;
+   }
+   
+        
+		int M = N + 1;
+
+        int cells[M][N * 5] ;
+
+        for (int i = 0; i < M; i++) {
+
+            if (M / 2 > i) {
+                int offset = N - i;
+                int toWrite = N + 2*i;
+                for (int j = offset; j < offset + toWrite; j++) {
+                    cells[i][j] = 1;
+                    cells[i][N * 5 - j - 1] = 1;
+                }
+            } else {
+
+                int offset = N - i;
+                for (int j = offset; j < offset + N; j++) {
+                    cells[i][j] = 1;
+                    cells[i][N * 5 - j - 1] = 1;
+                }
+
+                int toWriteOnBothSides = (N + M - 1 - i) / 2;
+                int middle = N * 5 / 2;
+                cells[i][middle] = 1;
+                for (int j = 1; j <= toWriteOnBothSides; j++) {
+                    cells[i][middle + j] = 1;
+                    cells[i][middle - j] = 1;
+
+                }
+            }
+
+        }
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N * 5; j++) {
+                if (cells[i][j] == 1) {
+                    printf("*");
+                } else {
+                    printf("-");
+                }
+            }
+            for (int j = 0; j < N * 5; j++) {
+                if (cells[i][j] == 1) {
+                    printf("*");
+                } else {
+                    printf("-");
+                }
+            }
+           printf("\n");
+        }
+
+   
+
+   return 0;
+}
